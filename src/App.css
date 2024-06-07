@@ -1,38 +1,55 @@
 .App {
-  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f9;
+  color: #333;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.app-nav-bar {
+  overflow-y: auto; /* Enable vertical scrolling */
+  height: 100%; /* Take up full height of parent */
+  width: 100%; /* Take up full width of parent */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.container {
+  height: 100vh; /* Set to viewport height */
+  overflow: auto; /* Enable scrolling */
+  border-radius: 60px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.content-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  padding: 50px;
+  max-width: 1200px;
+  margin: 40px auto;
+  margin-bottom: 40px auto;
+  background-color: #fff; /* White background */
+  border-radius: 30px; /* More rounded corners */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.content-container:hover {
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
+}
+
+.app-nav-button {
+  background-color: #007BFF; /* Blue */
+  border: none;
   color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  transition-duration: 0.4s;
+  border-radius: 5px; /* Rounded corners */
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.app-nav-button:hover {
+  background-color: #0056b3;
 }

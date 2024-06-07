@@ -1,0 +1,88 @@
+.content-block {
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 20px 10px rgba(0, 0, 255, 0.7);
+  animation: glow 30s ease-in-out infinite;
+  max-height: 600px; /* Fixed height for the content block */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 10px 5px rgba(148, 0, 211, 0.7); /* Violet */
+  }
+  7% {
+    box-shadow: 0 0 10px 5px rgba(111, 0, 170, 0.7); /* Violet-Indigo */
+  }
+  14% {
+    box-shadow: 0 0 10px 5px rgba(75, 0, 130, 0.7); /* Indigo */
+  }
+  21% {
+    box-shadow: 0 0 10px 5px rgba(37, 0, 192, 0.7); /* Indigo-Blue */
+  }
+  28% {
+    box-shadow: 0 0 10px 5px rgba(0, 0, 255, 0.7); /* Blue */
+  }
+  35% {
+    box-shadow: 0 0 10px 5px rgba(0, 127, 127, 0.7); /* Blue-Green */
+  }
+  42% {
+    box-shadow: 0 0 10px 5px rgba(0, 255, 0, 0.7); /* Green */
+  }
+  49% {
+    box-shadow: 0 0 10px 5px rgba(127, 255, 0, 0.7); /* Green-Yellow */
+  }
+  57% {
+    box-shadow: 0 0 10px 5px rgba(255, 255, 0, 0.7); /* Yellow */
+  }
+  64% {
+    box-shadow: 0 0 10px 5px rgba(255, 210, 0, 0.7); /* Yellow-Orange */
+  }
+  71% {
+    box-shadow: 0 0 10px 5px rgba(255, 165, 0, 0.7); /* Orange */
+  }
+  78% {
+    box-shadow: 0 0 10px 5px rgba(255, 82, 0, 0.7); /* Orange-Red */
+  }
+  85% {
+    box-shadow: 0 0 10px 5px rgba(255, 0, 0, 0.7); /* Red */
+  }
+  92% {
+    box-shadow: 0 0 10px 5px rgba(201, 0, 105, 0.7); /* Red-Violet */
+  }
+}
+
+.content-block > header {
+  font-size: 1.5em; /* Increase font size */
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #ff6347; /* Change the text color to tomato */
+  text-transform: uppercase; /* Make the text uppercase */
+  letter-spacing: 1px; /* Add some letter spacing */
+  border-bottom: 2px solid #ff6347; /* Add a bottom border */
+  padding-bottom: 5px; /* Add some padding at the bottom */
+}
+
+.content {
+  flex-grow: 1;
+  overflow: auto;
+}
+
+.metadata {
+  display: flex;
+  justify-content: space-between; /* Distribute items evenly */
+  align-items: center; /* Align items vertically in the center */
+  font-family: 'Impact', Courier, monospace; /* Change the font */
+  color: #000; /* Change the text color to black */
+  background-color: #9ec747; /* Change the background color to bright yellow */
+  padding: 15px; /* Increase padding */
+  border-radius: 5px; /* Round the corners */
+  margin-top: 10px; /* Add some margin at the top */
+  font-size: 1.2em; /* Increase font size */
+  box-shadow: 0px 0px 15px rgba(0,0,0,0.2); /* Add box shadow */
+}
