@@ -1,5 +1,6 @@
 {
-  "name": "dynamic-html-renderer",
+  "name": "email-template-gallery",
+  "homepage": "http://mailer.pinnacle.in/mailergallery",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

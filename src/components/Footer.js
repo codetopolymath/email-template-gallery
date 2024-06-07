@@ -4,7 +4,7 @@ import './Footer.css';
 function Footer() {
   return (
     <footer className="footer">
-      <a>Some quote or contact details here.</a>
+      <a href="https://mailer.pinnacle.in">template gallery by mailer.pinnacle.com</a>
     </footer>
   );
 }

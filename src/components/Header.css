@@ -5,15 +5,17 @@
 
 .navbar {
   display: flex;
-  justify-content: space-around; /* Distribute items evenly */
+  justify-content: center; /* Align items along the center */
   list-style-type: none;
   margin: 0;
   padding: 0;
+  width: 100%;
 }
 
 .navbar li {
-  flex-grow: 1; /* Allow items to grow to fill space */
-  text-align: center; /* Center the text within each item */
+  text-align: center; 
+  border-radius: 5px; /* Rounded corners */
+  margin: 10px; /* Add horizontal margin */
 }
 
 .navbar li a {

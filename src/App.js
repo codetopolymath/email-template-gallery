@@ -6,26 +6,31 @@ import Footer from './components/Footer';
 
 function App() {
   const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false); 
   const [error, setError] = useState(null);
   const [skip, setSkip] = useState(0);
-  const [limit, setLimit] = useState(10);
+  const [limit, setLimit] = useState(5);
+  const [apiToken, setApiToken] = useState('');
+  const [isTokenSubmitted, setIsTokenSubmitted] = useState(false);
 
   useEffect(() => {
-    const apiUrl = `http://127.0.0.1:8000/templates/?skip=${skip}&limit=${limit}`;
-
-    fetch(apiUrl)
-      .then(response => response.json())
-      .then(data => {
-        setData(data);
-        setLoading(false);
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-        setError(error);
-        setLoading(false);
-      });
-  }, [skip, limit]);
+    if (isTokenSubmitted && apiToken !== '') {
+      setLoading(true); 
+      const apiUrl = `https://mailer.pinnacle.in/api/v2/templates?api_token=${apiToken}&skip=${skip}&limit=${limit}`;
+  
+      fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+          setData(data.templates);
+          setLoading(false);
+        })
+        .catch(error => {
+          console.error('Error fetching data:', error);
+          setError(error);
+          setLoading(false);
+        });
+    }
+  }, [skip, limit, isTokenSubmitted, apiToken]);
 
   const handleNext = () => {
     setSkip(prevSkip => prevSkip + limit);
@@ -33,6 +38,10 @@ function App() {
 
   const handlePrev = () => {
     setSkip(prevSkip => Math.max(prevSkip - limit, 0));
+  };
+
+  const handleTokenSubmit = () => {
+    setIsTokenSubmitted(true);
   };
 
   if (loading) {
@@ -43,12 +52,23 @@ function App() {
     return <div>Error fetching data: {error.message}</div>;
   }
 
+  if (!isTokenSubmitted) {
+    return (
+      <div className="token-form">
+      <input className="token-input" type="text" placeholder="api_token" value={apiToken} onChange={e => setApiToken(e.target.value)} />
+        <div className="submit-button-container">
+          <button className="submit-button" onClick={handleTokenSubmit}>Submit</button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="App">
       <Header />
       <div className="content-container">
         {data.map(item => (
-          <ContentBlock key={item.template_uid} item={item} />
+          <ContentBlock key={item.uid} item={item} />
         ))}
         <div>
           <button className='app-nav-button' onClick={handlePrev}>Previous</button> 
