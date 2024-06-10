@@ -1,7 +1,5 @@
 import AWS from 'aws-sdk';
 
-
-
 // Configure AWS SDK
 AWS.config.update({
   accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
@@ -13,12 +11,11 @@ const s3 = new AWS.S3();
 
 export const uploadFile = (file) => {
   const params = {
-    Bucket: 'emails3service',
+    Bucket: process.env.REACT_APP_AWS_BUCKET_NAME,
     Key: file.name,
     Body: file,
     ACL: 'public-read'
   };
-  console.log('params', params);
 
   return new Promise((resolve, reject) => {
     s3.upload(params, function(err, data) {
@@ -33,7 +30,7 @@ export const uploadFile = (file) => {
 
 export const getFileUrl = (fileName) => {
   const params = {
-    Bucket: process.env.AWS_BUCKET_NAME,
+    Bucket: process.env.REACT_APP_AWS_BUCKET_NAME,
     Key: fileName,
     Expires: 60
   };
@@ -51,7 +48,7 @@ export const getFileUrl = (fileName) => {
 
 export const listAllFiles = () => {
   const params = {
-    Bucket: process.env.AWS_BUCKET_NAME,
+    Bucket: process.env.REACT_APP_AWS_BUCKET_NAME,
   };
 
   return new Promise((resolve, reject) => {
