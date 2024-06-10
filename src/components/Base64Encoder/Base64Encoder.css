@@ -1,0 +1,55 @@
+.base64-encoder {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 20px;
+}
+
+.base64-encoder h1 {
+    color: #333;
+}
+
+.base64-encoder input {
+    margin: 10px 0;
+    padding: 10px;
+    width: 200px;
+}
+
+.base64-encoder button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.base64-encoder div {
+    padding-top: 40px;
+    word-wrap: break-word;
+    width: 75%;
+    height: 100%;
+    text-align: center;
+    white-space: pre-wrap;
+    align-self: center;
+}
+
+.output-container {
+    margin-top: 10px;
+    margin-bottom: 50px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.output-container button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
