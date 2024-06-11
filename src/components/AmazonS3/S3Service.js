@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { uploadFile, listAllFiles } from './AmazonS3';
+import { uploadFile, listAllFiles, getFileUrl } from './AmazonS3';
 
 const S3Service = () => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -20,11 +20,21 @@ const S3Service = () => {
     }
   };
 
+  const handleFileClick = async (fileName) => {
+    try {
+      const url = await getFileUrl(fileName);
+      window.open(url, '_blank');
+    } catch (error) {
+      console.error('Error getting file URL: ', error);
+    }
+  };
+
   useEffect(() => {
     const fetchFiles = async () => {
       try {
-        const files = await listAllFiles();
-        setFiles(files);
+        const fetchedFiles = await listAllFiles();
+        setFiles(fetchedFiles);
+        console.log('Files fetched by component: ', fetchedFiles);
       } catch (error) {
         console.error('Error fetching files: ', error);
       }
@@ -40,7 +50,9 @@ const S3Service = () => {
       <h2>Files:</h2>
       <ul>
         {files.map((file, index) => (
-          <li key={index}>{file.Key}</li>
+          <li key={index} onClick={() => handleFileClick(file)}>
+            {file}
+          </li>
         ))}
       </ul>
     </div>

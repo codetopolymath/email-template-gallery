@@ -60,11 +60,10 @@ export const listAllFiles = () => {
         reject(err);
       } else {
         console.log('Files listed successfully: ', data.Contents);
-        const urls = data.Contents.map(file => 
-          `https://${params.Bucket}.s3.amazonaws.com/${file.Key}`
-        );
-        resolve(urls);
+        const files = data.Contents.map(file => file.Key);
+        resolve(files);
       }
     });
   });
 };
+
