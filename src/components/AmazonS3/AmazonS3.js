@@ -51,12 +51,19 @@ export const listAllFiles = () => {
     Bucket: process.env.REACT_APP_AWS_BUCKET_NAME,
   };
 
+  console.log(`Listing files in bucket: ${params.Bucket}`);
+
   return new Promise((resolve, reject) => {
     s3.listObjectsV2(params, function(err, data) {
       if (err) {
+        console.error('Error listing files: ', err);
         reject(err);
       } else {
-        resolve(data.Contents);
+        console.log('Files listed successfully: ', data.Contents);
+        const urls = data.Contents.map(file => 
+          `https://${params.Bucket}.s3.amazonaws.com/${file.Key}`
+        );
+        resolve(urls);
       }
     });
   });

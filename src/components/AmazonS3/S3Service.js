@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { uploadFile, listAllFiles } from './AmazonS3';
 
-const S3FileHandler = () => {
+const S3Service = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [files, setFiles] = useState([]);
 
@@ -47,4 +47,4 @@ const S3FileHandler = () => {
   );
 };
 
-export default S3FileHandler;
+export default S3Service;
