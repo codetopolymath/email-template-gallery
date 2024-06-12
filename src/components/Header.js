@@ -1,21 +1,25 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import './Header.css'; 
+import { Link as RouterLink } from 'react-router-dom';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Button from '@mui/material/Button';
+import { Box } from '@mui/material';
 
 function Header() {
   return (
-    <header className="header">
-      <nav>
-        <ul className="navbar">
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/about">About</Link></li>
-          <li><Link to="/contact">Contact</Link></li>
-          <li><Link to="/TemplateGallery">TemplateGallery</Link></li>
-          <li><Link to="/Base64Encoder">Base64Encoder</Link></li>
-          <li><Link to="/S3Service">S3Service</Link></li>
-        </ul>
-      </nav>
-    </header>
+    <AppBar position="static">
+      <Toolbar>
+        <Box display={"flex"} justifyContent={"space-between"} width={"100%"}>
+          <Button color="inherit" component={RouterLink} to="/">Home</Button>
+          <Button color="inherit" component={RouterLink} to="/about">About</Button>
+          <Button color="inherit" component={RouterLink} to="/contact">Contact</Button>
+          <Button color="inherit" component={RouterLink} to="/TemplateGallery">TemplateGallery</Button>
+          <Button color="inherit" component={RouterLink} to="/UploadTemplate">UploadTemplate</Button>
+          <Button color="inherit" component={RouterLink} to="/Base64Encoder">Base64Encoder</Button>
+          <Button color="inherit" component={RouterLink} to="/S3Service">S3Service</Button>
+        </Box>
+      </Toolbar>
+    </AppBar>
   );
 }
 

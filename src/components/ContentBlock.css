@@ -6,7 +6,7 @@
   border-radius: 5px;
   box-shadow: 0 0 20px 10px rgba(0, 0, 255, 0.7);
   animation: glow 30s ease-in-out infinite;
-  max-height: 600px; /* Fixed height for the content block */
+  max-height: 600px;
   overflow: hidden;
   display: flex;
   flex-direction: column;

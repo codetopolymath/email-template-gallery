@@ -1,76 +1,55 @@
-import React, { useEffect, useState } from 'react';
-import ContentBlock from '../ContentBlock/ContentBlock';
-import './TemplateGallery.css';
+import React, { useState, useEffect } from 'react';
+import ContentBlock from '../ContentBlock';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import CircularProgress from '@mui/material/CircularProgress';
+import Alert from '@mui/material/Alert';
 
 const TemplateGallery = () => {
   const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false); 
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [skip, setSkip] = useState(0);
-  const [limit, setLimit] = useState(5);
-  const [apiToken, setApiToken] = useState('');
-  const [isTokenSubmitted, setIsTokenSubmitted] = useState(false);
 
   useEffect(() => {
-    if (isTokenSubmitted && apiToken !== '') {
-      setLoading(true); 
-      const apiUrl = `https://mailer.pinnacle.in/api/v2/templates?api_token=${apiToken}&skip=${skip}&limit=${limit}`;
-  
-      fetch(apiUrl)
-        .then(response => response.json())
-        .then(data => {
+    const fetchData = async () => {
+      try {
+        const apiToken = localStorage.getItem('apiToken');
+        const response = await fetch(`https://mailer.pinnacle.in/api/v2/templates?api_token=${apiToken}`);
+        const data = await response.json();
+        if (response.ok) {
           setData(data.templates);
-          setLoading(false);
-        })
-        .catch(error => {
-          console.error('Error fetching data:', error);
-          setError(error);
-          setLoading(false);
-        });
-    }
-  }, [skip, limit, isTokenSubmitted, apiToken]);
+        } else {
+          throw new Error(data.error);
+        }
+      } catch (error) {
+        console.error(error);
+        setError(error); 
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  const handleNext = () => {
-    setSkip(prevSkip => prevSkip + limit);
-  };
-
-  const handlePrev = () => {
-    setSkip(prevSkip => Math.max(prevSkip - limit, 0));
-  };
-
-  const handleTokenSubmit = () => {
-    setIsTokenSubmitted(true);
-  };
+    fetchData();
+  }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Box sx={{ display: 'flex', justifyContent: 'center', p: 2 }}><CircularProgress /></Box>;
   }
 
-  if (error) {
-    return <div>Error fetching data: {error.message}</div>;
-  }
-
-  if (!isTokenSubmitted) {
-    return (
-      <div className="token-form">
-      <input className="token-input" type="text" placeholder="api_token" value={apiToken} onChange={e => setApiToken(e.target.value)} />
-        <div className="submit-button-container">
-          <button className="submit-button" onClick={handleTokenSubmit}>Submit</button>
-        </div>
-      </div>
-    );
+  if (error) { 
+    return <Alert severity="error">Error: {error.message}</Alert>;
   }
 
   return (
-    <div className="template-gallery">
-      {data.map(item => (
-        <ContentBlock key={item.uid} item={item} />
-      ))}
-      <div>
-        <button className='app-nav-button' onClick={handlePrev}>Previous</button> 
-        <button className='app-nav-button' onClick={handleNext}>Next</button>
-      </div>
-    </div>
+    <Box sx={{ justifyContent: 'center', maxWidth: '1200px', m: '0 auto', p: '40px' }}>
+      <Grid container spacing={4}>
+        {data.map((template) => (
+          <Grid item xs={12} key={template.id}>
+            <ContentBlock item={template} />
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
   );
 };
 
