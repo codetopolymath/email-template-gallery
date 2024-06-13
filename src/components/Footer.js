@@ -1,8 +1,8 @@
 import React from 'react';
-import { Box, Typography, Link } from '@mui/material';
-import { blue, blueGrey } from '@mui/material/colors';
+import { Box, Typography, Link, Button } from '@mui/material';
+import { blue } from '@mui/material/colors';
 
-function Footer() {
+function Footer({ handleOpenNotification }) {
   return (
     <Box 
       sx={{
@@ -24,6 +24,13 @@ function Footer() {
           mailer.pinnacle.com
         </Link>
       </Typography>
+      <Button 
+        onClick={() => handleOpenNotification('Notification from Footer!', 'success')} 
+        color="inherit"
+        style={{ marginLeft: '20px' }}
+      >
+        Trigger Notification
+      </Button>
     </Box>
   );
 }

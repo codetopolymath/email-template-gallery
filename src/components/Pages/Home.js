@@ -1,31 +1,25 @@
 import React from 'react';
-
-const styles = {
-  container: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'column',
-    height: '100vh',
-    textAlign: 'center',
-    backgroundColor: '#f5f5f5',
-  },
-  heading: {
-    fontSize: '3em',
-    color: '#444',
-  },
-  text: {
-    fontSize: '1.5em',
-    color: '#666',
-  },
-};
+import { Box, Typography } from '@mui/material';
 
 function Home() {
   return (
-    <div style={styles.container}>
-      <h1 style={styles.heading}>Welcome to our Home Page</h1>
-      <p style={styles.text}>This is the home page of our website.</p>
-    </div>
+    <Box 
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        textAlign: 'center',
+        bgcolor: '#f5f5f5',
+      }}
+    >
+      <Typography variant="h3" color="text.secondary" gutterBottom>
+        Welcome to our Home Page
+      </Typography>
+      <Typography variant="h6" color="text.secondary">
+        This is the home page of our website.
+      </Typography>
+    </Box>
   );
 }
 

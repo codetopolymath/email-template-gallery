@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { uploadFile, listAllFiles, getFileUrl } from './AmazonS3';
+import { Button, List, ListItem, ListItemText, Input, Container, Typography } from '@mui/material';
 
 const S3Service = () => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -44,18 +45,18 @@ const S3Service = () => {
   }, []);
 
   return (
-    <div>
-      <input type="file" onChange={handleFileChange} />
-      <button onClick={handleUpload}>Upload</button>
-      <h2>Files:</h2>
-      <ul>
+    <Container>
+      <Input style={{padding:'20px', margin: '20px', borderRadius: '5px' }} type="file" onChange={handleFileChange} />
+      <Button variant="contained" color="primary" onClick={handleUpload}>Upload</Button>
+      <Typography variant="h6">Files:</Typography>
+      <List>
         {files.map((file, index) => (
-          <li key={index} onClick={() => handleFileClick(file)}>
-            {file}
-          </li>
+          <ListItem button key={index} onClick={() => handleFileClick(file)}>
+            <ListItemText primary={file} />
+          </ListItem>
         ))}
-      </ul>
-    </div>
+      </List>
+    </Container>
   );
 };
 
